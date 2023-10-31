@@ -35,27 +35,27 @@ class _homeScreenState extends State<homeScreen> {
        items: [
          BottomNavigationBarItem(
            backgroundColor: Colors.black,
-             icon:ImageIcon(AssetImage('assets/images/Home_icon.png'),
+             icon: ImageIcon(AssetImage('assets/images/Home_icon.png'),
              ),
-           label: 'Home'
+           label: ''
          ),
          BottomNavigationBarItem(
              backgroundColor: Theme.of(context).primaryColor,
              icon:ImageIcon(AssetImage('assets/images/Search_icon.png')
              ),
-           label: 'Search'
+           label: ''
          ),
          BottomNavigationBarItem(
              backgroundColor: Theme.of(context).primaryColor,
              icon:ImageIcon(AssetImage('assets/images/Downloads_icon.png')
              ),
-           label: 'Browse'
+           label: ''
          ),
          BottomNavigationBarItem(
              backgroundColor: Theme.of(context).primaryColor,
              icon:ImageIcon(AssetImage('assets/images/watchList_icon.png')
              ),
-           label: 'WatchList'
+           label: ''
          )
 
        ],

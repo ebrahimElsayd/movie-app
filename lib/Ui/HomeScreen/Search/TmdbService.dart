@@ -9,7 +9,7 @@ class TmdbService {
 
   Future<List<Results>> searchMovies(String query) async {
     final response = await http.get(Uri.parse(
-        'https://api.themoviedb.org/3/search/movie?api_key=$apiKey&query=$query'));
+        'https://image.tmdb.org/t/p/w500/3/search/movie?api_key=$apiKey&query=$query'));
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);

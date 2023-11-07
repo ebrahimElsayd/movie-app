@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/Ui/HomeScreen/Search/Search.dart';
 import 'package:movies_app/Ui/HomeScreen/homeScreen.dart';
 
 void main() {
@@ -14,8 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         homeScreen.routename : (_) =>homeScreen(),
+        SearchScreen.routName:(_)=>homeScreen(),
       },
-      initialRoute: homeScreen.routename,
+      initialRoute: SearchScreen.routName,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF1A1A1A),

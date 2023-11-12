@@ -16,7 +16,7 @@ class _homeScreenState extends State<homeScreen> {
   int selectTapIndex=0;
   List<Widget>taps=[
     Home(),
-    SearchScreen(),
+    Search(),
     Browse(),
     WatchList()
   ];

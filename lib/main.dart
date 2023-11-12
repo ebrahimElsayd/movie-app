@@ -15,9 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         homeScreen.routename : (_) =>homeScreen(),
-        SearchScreen.routName:(_)=>homeScreen(),
+        Search.routename:(_)=>Search(),
       },
-      initialRoute: SearchScreen.routName,
+      initialRoute: Search.routename,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF1A1A1A),

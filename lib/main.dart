@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         homeScreen.routename : (_) =>homeScreen(),
         Search.routename:(_)=>Search(),
       },
-      initialRoute: Search.routename,
+      initialRoute: homeScreen.routename,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF1A1A1A),

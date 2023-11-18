@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/Ui/HomeScreen/Browse/movieList.dart';
 import 'package:movies_app/Ui/HomeScreen/Search/Search.dart';
 import 'package:movies_app/Ui/HomeScreen/homeScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,7 +22,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         homeScreen.routename : (_) =>homeScreen(),
+        MovieList.routeName : (_) => const MovieList()
         Search.routename:(_)=>Search(),
+
       },
       initialRoute: homeScreen.routename,
       title: 'Flutter Demo',

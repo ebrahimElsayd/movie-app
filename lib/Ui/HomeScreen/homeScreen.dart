@@ -4,6 +4,7 @@ import 'package:movies_app/Ui/HomeScreen/Browse/Browse.dart';
 import 'package:movies_app/Ui/HomeScreen/Home/Home.dart';
 import 'package:movies_app/Ui/HomeScreen/Search/Search.dart';
 import 'package:movies_app/Ui/HomeScreen/WatchList/WatchList.dart';
+import 'package:movies_app/Ui/HomeScreen/homeScreenWidgets/homeScreen.dart';
 
 class homeScreen extends StatefulWidget{
   static const String routename='home';
@@ -15,7 +16,7 @@ class homeScreen extends StatefulWidget{
 class _homeScreenState extends State<homeScreen> {
   int selectTapIndex=0;
   List<Widget>taps=[
-    Home(),
+    HomeScreen(),
     Search(),
     Browse(),
     WatchList()
@@ -41,7 +42,8 @@ class _homeScreenState extends State<homeScreen> {
          ),
          BottomNavigationBarItem(
              backgroundColor: Theme.of(context).primaryColor,
-             icon:ImageIcon(AssetImage('assets/images/Search_icon.png')
+             icon:ImageIcon(AssetImage('assets/images/Search_icon.png'),
+
              ),
            label: ''
          ),

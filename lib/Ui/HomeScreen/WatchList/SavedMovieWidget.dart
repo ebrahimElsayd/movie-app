@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:movies_app/model/detail/Details.dart';
 import 'package:movies_app/network/movie_model.dart';
 
 class SavedMoviesWidget extends StatelessWidget {
@@ -27,7 +28,7 @@ class SavedMoviesWidget extends StatelessWidget {
           Column(
             children: [
               Text(
-                model.title,
+               " ${model.title},",
                 style: const TextStyle(color: Colors.white, fontSize: 17),
               ),
               Text(

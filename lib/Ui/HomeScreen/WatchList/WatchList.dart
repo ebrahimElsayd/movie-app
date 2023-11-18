@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/Ui/HomeScreen/WatchList/SavedMovieWidget.dart';
+import 'package:movies_app/model/detail/Details.dart';
 import 'package:movies_app/network/firestore.dart';
 import 'package:movies_app/network/movie_model.dart';
 
@@ -51,15 +52,10 @@ class WatchList extends StatelessWidget {
 
               }),
 
-          ElevatedButton(
-              onPressed: () async {
-                var model = MovieModel(
-                   title: "title", date: 2022, photo: "photo");
-                await FireStoreUtils.addDataToFireStore(model);
-              },
-              child: const Text("add"))
+
         ],
       ),
     );
   }
+
 }

@@ -3,6 +3,7 @@ import 'package:movies_app/Ui/HomeScreen/Browse/movieList.dart';
 import 'package:movies_app/Ui/HomeScreen/Search/Search.dart';
 import 'package:movies_app/Ui/HomeScreen/homeScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:movies_app/Ui/HomeScreen/homeScreenWidgets/details/detailss.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -21,8 +22,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
+        MovieDetails.routName:(_)=>MovieDetails(),
         homeScreen.routename : (_) =>homeScreen(),
-        MovieList.routeName : (_) => const MovieList()
+        MovieList.routeName : (_) => const MovieList(),
         Search.routename:(_)=>Search(),
 
       },

@@ -1,8 +1,11 @@
+import 'package:movies_app/model/detail/Details.dart';
+import 'package:movies_app/network/firestore.dart';
+
 class MovieModel{
   String? id;
   String title;
   String photo;
-  num date;
+  String date;
   MovieModel({this.id,
     required this.title,
     required this.date,
@@ -25,4 +28,5 @@ class MovieModel{
        "date" : date,
      };
 }
+
 }

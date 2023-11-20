@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:movies_app/model/detail/Details.dart';
 import 'package:movies_app/network/movie_model.dart';
 
 class FireStoreUtils{

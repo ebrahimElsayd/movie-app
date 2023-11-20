@@ -41,8 +41,9 @@ dependencies:
   cached_network_image: ^3.3.0
   firebase_core: ^2.22.0
   cloud_firestore: ^4.13.1
-  http: ^0.13.0
+# http: ^0.13.0
   flutter_bloc: ^8.0.0
+  shared_preferences: ^2.2.2
 
 
 dev_dependencies:

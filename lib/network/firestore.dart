@@ -1,22 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:movies_app/model/detail/Details.dart';
-import 'package:movies_app/network/movie_model.dart';
 
 class FireStoreUtils{
-  static CollectionReference<MovieModel> getCollection(){
+  static CollectionReference<Details> getCollection(){
     return FirebaseFirestore.instance.collection("movies").
-    withConverter<MovieModel>
-      (fromFirestore: (snapshot, _) => MovieModel.fromFireStore(snapshot.data()!),
+    withConverter<Details>
+      (fromFirestore: (snapshot, _) => Details.fromFireStore(snapshot.data()!),
         toFirestore: (value, _) =>value.toFireStore());
   }
-  static Future<void> addDataToFireStore(MovieModel model){
+  static Future<void> addDataToFireStore(Details model){
     var colRef = getCollection();
     var docRef = colRef.doc();
+    model.id = docRef.id;
     return docRef.set(model);
   }
-  static Future<List<MovieModel>> getDataFromFireStore()async{
-    var snapshot = await getCollection().get();
-     return snapshot.docs.map((e) => e.data()).toList();
+
+  static Future<void> deleteDataFromFireStore(Details model)async{
+    var colRef = getCollection();
+    return colRef.doc(model.id).delete();
   }
 
+  static Stream<QuerySnapshot<Details>> getRealTimeDataFromFireStore() {
+    var snapshot = getCollection().snapshots();
+    print('Snapshot: $snapshot');
+    return snapshot;
+  }
 }

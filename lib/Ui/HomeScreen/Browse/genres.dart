@@ -3,7 +3,7 @@ import 'api/Genres.dart';
 import 'movieList.dart';
 
 class GenreDetails extends StatelessWidget {
-  final Genres genre;
+  final Genres_detail genre;
   const GenreDetails(this.genre, {super.key});
 
   @override

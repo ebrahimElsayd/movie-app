@@ -18,7 +18,7 @@ class MoviesWidget extends StatelessWidget {
             CircularProgressIndicator(value: downloadProgress.progress),
         errorWidget: (context, url, error) => const Icon(Icons.error),
       ),
-      SizedBox(
+      const SizedBox(
         height: 20,
       ),
       Text(
@@ -27,7 +27,7 @@ class MoviesWidget extends StatelessWidget {
         style: const TextStyle(
             color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
       ),
-      SizedBox(
+      const SizedBox(
         height: 20,
       ),
       SizedBox(

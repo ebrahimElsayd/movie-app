@@ -22,25 +22,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        MovieDetails.routName:(_)=>MovieDetails(),
-        homeScreen.routename : (_) =>homeScreen(),
+        MovieDetails.routName:(_)=>const MovieDetails(),
+        Home.routeName : (_) =>const Home(),
         MovieList.routeName : (_) => const MovieList(),
-        Search.routename:(_)=>Search(),
+        Search.routeName:(_)=>const Search(),
 
       },
-      initialRoute: homeScreen.routename,
+      initialRoute: Home.routeName,
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF1A1A1A),
-          primary: Color(0xFF1A1A1A),
-          secondary: Color(0xFF1A1A1A),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1A1A1A),
           onPrimary: Colors.white,
           onSecondary: Colors.black
         ),
-        primaryColor: Color(0xFF1A1A1A),
+        primaryColor: const Color(0xFF1A1A1A),
           secondaryHeaderColor: Colors.black,
           scaffoldBackgroundColor:Colors.transparent ,
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           selectedItemColor: Color(0xFFFBAF22),
           unselectedItemColor: Colors.white,
           selectedIconTheme: IconThemeData(

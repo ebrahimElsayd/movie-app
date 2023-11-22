@@ -1,20 +1,20 @@
 /// id : 28
 /// name : "Action"
 
-class Genres {
-  Genres({
+class Genres_detail {
+  Genres_detail({
       this.id, 
       this.name,});
 
-  Genres.fromJson(dynamic json) {
+  Genres_detail.fromJson(dynamic json) {
     id = json['id'];
     name = json['name'];
   }
   int? id;
   String? name;
-Genres copyWith({  int? id,
+Genres_detail copyWith({  int? id,
   String? name,
-}) => Genres(  id: id ?? this.id,
+}) => Genres_detail(  id: id ?? this.id,
   name: name ?? this.name,
 );
   Map<String, dynamic> toJson() {

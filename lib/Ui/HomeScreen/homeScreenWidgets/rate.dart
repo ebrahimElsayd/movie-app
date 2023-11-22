@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:movies_app/model/detail/Details.dart';
 
-//import 'package:movieapp/model/rec.dart';
-//import 'package:movieapp/model/recomenddedResponse/recomend.dart';
-
 class Rate extends StatelessWidget {
-  Rate({super.key, required this.results});
+  const Rate({super.key, required this.results});
 
-  //Recomend results;
+  //Recommend results;
 
-  Details results;
+  final Details results;
   // Rec results;
 
   @override
@@ -18,7 +15,7 @@ class Rate extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Row(
         children: [
-          Icon(
+          const Icon(
             Icons.star,
             color: Colors.amber,
             size: 15,
@@ -26,21 +23,21 @@ class Rate extends StatelessWidget {
           //Text("${snapshot.data.voteAverage.toStringAsFixed(1)}/10")
           Text(
             "${results.voteAverage!.toStringAsFixed(1)}/10",
-            style: TextStyle(color: Colors.white, fontSize: 10),
+            style: const TextStyle(color: Colors.white, fontSize: 10),
           )
         ],
       ),
       Text(
         "${results.title}",
-        style: TextStyle(
+        style: const TextStyle(
             color: Colors.white, fontSize: 9, fontWeight: FontWeight.w400),
       ),
-      SizedBox(
+      const SizedBox(
         height: 5,
       ),
       Text(
         "${results.releaseDate}",
-        style: TextStyle(
+        style: const TextStyle(
             color: Colors.white, fontSize: 9, fontWeight: FontWeight.w200),
       )
     ]);

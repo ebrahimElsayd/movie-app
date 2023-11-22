@@ -5,14 +5,14 @@ import 'package:movies_app/model/detail/Details.dart';
 import 'package:movies_app/network/firestore.dart';
 
 
-class ReleasrBook extends StatefulWidget {
-   ReleasrBook(this.details,{super.key});
+class ReleaseBook extends StatefulWidget {
+   ReleaseBook(this.details,{super.key});
   Details details;
   @override
-  State<ReleasrBook> createState() => _ReleasrBookState();
+  State<ReleaseBook> createState() => _ReleaseBookState();
 }
 
-class _ReleasrBookState extends State<ReleasrBook> {
+class _ReleaseBookState extends State<ReleaseBook> {
   String isSave = "assets/images/bookmark.png";
   @override
   Widget build(BuildContext context) {
@@ -32,26 +32,26 @@ class _ReleasrBookState extends State<ReleasrBook> {
         ),
         Positioned(
           right: 59,
-          bottom: 98,
+          bottom: 88,
           child: FloatingActionButton(
               backgroundColor: Colors.transparent,
               onPressed: () async {
 
 
-                // var model = Details(
-                //     title: "${widget.details.title}",
-                //     releaseDate:
-                //     "${widget.details.releaseDate}",
-                //     posterPath:
-                //     "${widget.details.posterPath}");
-               // await FireStoreUtils.addDataToFireStore(model);
+                var model = Details(
+                    title: "${widget.details.title}",
+                    releaseDate:
+                    "${widget.details.releaseDate}",
+                    posterPath:
+                    "${widget.details.posterPath}");
+               await FireStoreUtils.addDataToFireStore(model);
 
                 setState(() {
                   isSave = ("assets/images/bookmarkright.png");
                 });
               },
               child: Image.asset(
-                "${isSave}",
+                isSave,
               )),
         )
       ],

@@ -9,7 +9,7 @@ import 'package:movies_app/model/detail/Details.dart';
 class HomeScreen extends StatefulWidget {
   static const String routeName = "homeScreen";
 
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -30,16 +30,16 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     popularScreen = Api.getPopularResponse();
     releasesScreen = Api.newReleasesResponse();
-    recomendedScreen = Api.RecomendedResponse();
+    recomendedScreen = Api.recommendedResponse();
   }
-
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black,
         //  backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
           key: const Key('movieScrollView'),
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 15),
             child: Column(
@@ -52,14 +52,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     future: popularScreen,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(child: CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator());
                       } else if (snapshot.hasError) {
                         return Center(
                           child: Column(
                             children: [
                               Text(snapshot.error.toString()),
                               ElevatedButton(
-                                  onPressed: () {}, child: Text("try again"))
+                                  onPressed: () {}, child: const Text("try again"))
                             ],
                           ),
                         );
@@ -71,24 +71,24 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                  color: Color(0xEF282A28),
+                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                  color: const Color(0xEF282A28),
                   child: SizedBox(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "New Releases ",
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 18),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         FutureBuilder(
@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return Center(child: CircularProgressIndicator());
+                              return const Center(child: CircularProgressIndicator());
                             } else if (snapshot.hasError) {
                               return Center(
                                 child: Column(
@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Text(snapshot.error.toString()),
                                     ElevatedButton(
                                         onPressed: () {},
-                                        child: Text("try again"))
+                                        child: const Text("try again"))
                                   ],
                                 ),
                               );
@@ -116,24 +116,24 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 22,
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                  color: Color(0xEF282A28),
+                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                  color: const Color(0xEF282A28),
                   child: SizedBox(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "Recomended ",
+                        const Text(
+                          "Recommended ",
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 18),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 8,
                         ),
                         FutureBuilder(
@@ -141,16 +141,16 @@ class _HomeScreenState extends State<HomeScreen> {
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return Center(child: CircularProgressIndicator());
+                              return const Center(child: CircularProgressIndicator());
                             } else if (snapshot.hasError) {
-                              print(snapshot.error.toString());
+                              // print(snapshot.error.toString());
                               return Center(
                                 child: Column(
                                   children: [
                                     Text(snapshot.error.toString()),
                                     ElevatedButton(
                                         onPressed: () {},
-                                        child: Text("try again"))
+                                        child: const Text("try again"))
                                   ],
                                 ),
                               );

@@ -10,12 +10,12 @@ class SourcesResponse {
     if (json['genres'] != null) {
       genres = [];
       json['genres'].forEach((v) {
-        genres?.add(Genres.fromJson(v));
+        genres?.add(Genres_detail.fromJson(v));
       });
     }
   }
-  List<Genres>? genres;
-SourcesResponse copyWith({  List<Genres>? genres,
+  List<Genres_detail>? genres;
+SourcesResponse copyWith({  List<Genres_detail>? genres,
 }) => SourcesResponse(  genres: genres ?? this.genres,
 );
   Map<String, dynamic> toJson() {

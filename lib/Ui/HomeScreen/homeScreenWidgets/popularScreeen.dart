@@ -6,7 +6,7 @@ import 'package:movies_app/model/constant.dart';
 
 
 class PopularScreen extends StatelessWidget {
-  PopularScreen({
+  const PopularScreen({
     super.key,
     required this.snapshot,
   });
@@ -52,7 +52,7 @@ class PopularScreen extends StatelessWidget {
                     ),
                   ),
 
-                  Positioned(
+                  const Positioned(
                       bottom: 160,
                       right: 190,
                       child: Icon(

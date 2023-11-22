@@ -53,7 +53,9 @@ class Details {
       this.title, 
       this.video, 
       this.voteAverage, 
-      this.voteCount,});
+      this.voteCount,
+      this.isFavorite = false,
+  });
 
   Details.fromJson(dynamic json) {
     adult = json['adult'];
@@ -67,7 +69,7 @@ class Details {
       });
     }
     homepage = json['homepage'];
-    id = json['id'];
+    id = json['id'].toString();
     imdbId = json['imdb_id'];
     originalLanguage = json['original_language'];
     originalTitle = json['original_title'];
@@ -124,7 +126,7 @@ class Details {
   int? budget;
   List<Genres>? genres;
   String? homepage;
-  int? id;
+  String? id;
   String? imdbId;
   String? originalLanguage;
   String? originalTitle;
@@ -143,13 +145,14 @@ class Details {
   bool? video;
   double? voteAverage;
   int? voteCount;
+  bool? isFavorite  = false;
 Details copyWith({  bool? adult,
   dynamic backdropPath,
   dynamic belongsToCollection,
   int? budget,
   List<Genres>? genres,
   String? homepage,
-  int? id,
+  String? id,
   String? imdbId,
   String? originalLanguage,
   String? originalTitle,
@@ -168,6 +171,7 @@ Details copyWith({  bool? adult,
   bool? video,
   double? voteAverage,
   int? voteCount,
+  bool? isFavourite = false
 }) => Details(  adult: adult ?? this.adult,
   backdropPath: backdropPath ?? this.backdropPath,
   belongsToCollection: belongsToCollection ?? this.belongsToCollection,
@@ -232,22 +236,23 @@ Details copyWith({  bool? adult,
     return map;
   }
 
-  // factory Details.fromFireStore(Map<String, dynamic> json){
-  //   return Details(
-  //       id: json["id"],
-  //       title: json["title"],
-  //      releaseDate : json["date"],
-  //       posterPath: json["photo"]
-  //   );
-  // }
-  //
-  // Map<String, dynamic> toFireStore(){
-  //   return {
-  //     "id" : id,
-  //     "title" : title,
-  //     "photo" : posterPath,
-  //     "date" : releaseDate,
-  //   };
-  // }
+  factory Details.fromFireStore(Map<String, dynamic> json){
+    return Details(
+        id: json["id"],
+        title: json["title"],
+       releaseDate : json["releaseDate"],
+        posterPath: json["posterPath"],
+      isFavorite: json['isFavorite'],
+    );
+  }
 
+  Map<String, dynamic> toFireStore(){
+    return {
+      "id" : id,
+      "title" : title,
+      "posterPath" : posterPath,
+      "releaseDate" : releaseDate,
+      'isFavorite': true,
+    };
+  }
 }

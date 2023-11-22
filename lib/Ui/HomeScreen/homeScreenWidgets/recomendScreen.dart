@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/Ui/HomeScreen/homeScreenWidgets/details/detailss.dart';
 import 'package:movies_app/Ui/HomeScreen/homeScreenWidgets/details/stackBook.dart';
 import 'package:movies_app/Ui/HomeScreen/homeScreenWidgets/rate.dart';
-import 'package:movies_app/model/constant.dart';
-import 'package:movies_app/model/detail/Details.dart';
-import 'package:movies_app/network/firestore.dart';
-import 'package:movies_app/network/movie_model.dart';
 
 class RecomendScreen extends StatefulWidget {
-  RecomendScreen({
+  const RecomendScreen({
     super.key,
     required this.snapshot,
   });
@@ -87,7 +82,7 @@ class _RecomendScreenState extends State<RecomendScreen> {
                     //     )
                     //   ],
                     // ),
-                    StackBoook(widget.snapshot!.data[index]),
+                    StackBook(widget.snapshot.data[index]),
                     Expanded(
                         child: Rate(results: widget.snapshot.data![index])),
                   ],

@@ -1,43 +1,34 @@
 import 'package:flutter/material.dart';
-
 import 'package:movies_app/model/constant.dart';
 import 'package:movies_app/model/detail/Details.dart';
-import 'package:movies_app/network/firestore.dart';
-import 'package:movies_app/network/movie_model.dart';
-
+import 'package:provider/provider.dart';
+import '../../../providers/save_provider.dart';
 
 class Small extends StatefulWidget {
-  Small(
-      {super.key,
-      required this.results,
+  const Small({super.key, required this.results, required this.snapshot});
       //required this.rec,
-
-      required this.snapshot});
 
   final AsyncSnapshot snapshot;
   // Results results;
-  Details results;
+  final Details results;
 
   @override
   State<Small> createState() => _SmallState();
 }
 
 class _SmallState extends State<Small> {
-  String isSave = "assets/images/bookmark.png";
-
 //Rec rec;
   @override
   Widget build(BuildContext context) {
+    SaveMovieProvider saveMovie = Provider.of<SaveMovieProvider>(context);
     return Stack(
       children: [
         Container(
           // alignment: Alignment.topLeft,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-
-            // border: Border.all(color: )
           ),
-          margin: EdgeInsets.all(5),
+          margin: const EdgeInsets.all(5),
           width: 140,
           height: 210,
           child: Image.network(
@@ -55,18 +46,13 @@ class _SmallState extends State<Small> {
           bottom: 170,
           child: FloatingActionButton(
               backgroundColor: Colors.transparent,
-              onPressed: () async{
-                isSave = ("assets/images/bookmarkright.png");
-
-
-                  // var model = Details(
-                  //     title: "${widget.results.title}", releaseDate: "${widget.results.releaseDate}", posterPath: "${widget.results.posterPath}");
-                  // await FireStoreUtils.addDataToFireStore(model);
-
-                setState(() {});
+              onPressed: () async {
+                saveMovie.bookmarkButtonPressed(widget.results);
               },
               child: Image.asset(
-                "${isSave}",
+                (widget.results.isFavorite)
+                    ? "assets/images/bookmarkright.png"
+                    : "assets/images/bookmark.png",
               )),
         )
       ],

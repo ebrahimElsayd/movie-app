@@ -4,6 +4,8 @@ import 'package:movies_app/Ui/HomeScreen/Search/Search.dart';
 import 'package:movies_app/Ui/HomeScreen/homeScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:movies_app/Ui/HomeScreen/homeScreenWidgets/details/detailss.dart';
+import 'package:movies_app/providers/save_provider.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -11,7 +13,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create:(context) => SaveMovieProvider(),
+  child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -22,25 +26,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        MovieDetails.routName:(_)=>MovieDetails(),
-        homeScreen.routename : (_) =>homeScreen(),
+        MovieDetails.routName:(_)=>const MovieDetails(),
+        Home.routeName : (_) =>const Home(),
         MovieList.routeName : (_) => const MovieList(),
-        Search.routename:(_)=>Search(),
+        Search.routeName:(_)=>const Search(),
 
       },
-      initialRoute: homeScreen.routename,
+      initialRoute: Home.routeName,
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF1A1A1A),
-          primary: Color(0xFF1A1A1A),
-          secondary: Color(0xFF1A1A1A),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1A1A1A),
           onPrimary: Colors.white,
           onSecondary: Colors.black
         ),
-        primaryColor: Color(0xFF1A1A1A),
+        primaryColor: const Color(0xFF1A1A1A),
           secondaryHeaderColor: Colors.black,
           scaffoldBackgroundColor:Colors.transparent ,
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           selectedItemColor: Color(0xFFFBAF22),
           unselectedItemColor: Colors.white,
           selectedIconTheme: IconThemeData(

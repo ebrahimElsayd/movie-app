@@ -24,7 +24,7 @@ class Api {
       print(decodData);
       return decodData.map((result) => Details.fromJson(result)).toList();
     } else {
-      throw Exception("somtheing went wrong");
+      throw Exception("something went wrong");
     }
 
   }
@@ -39,14 +39,14 @@ class Api {
       return decodData.map((result) => Details.fromJson(result)).toList();
       // return decodData.map((result) => Rec.fromJson(result)).toList();
     } else {
-      throw Exception("somtheing went wrong");
+      throw Exception("something went wrong");
     }
     //var movieResponse = MovieResponse.fromJson(json)
     // return movieResponse;
   }
 
 
-  static Future<List<Details>> RecomendedResponse() async {
+  static Future<List<Details>> recommendedResponse() async {
     var response = await http.get(Uri.parse(recomended));
     if (response.statusCode == 200) {
       final decodData = json.decode(response.body)['results'] as List;
@@ -54,14 +54,14 @@ class Api {
       // return decodData.map((result) => Results.fromJson(result)).toList();
       return decodData.map((result) => Details.fromJson(result)).toList();
     } else {
-      throw Exception("somtheing went wrong");
+      throw Exception("something went wrong");
     }
     //var movieResponse = MovieResponse.fromJson(json)
     // return movieResponse;
   }
 
 
-  static Future<List<Details>> MoreLike(int id) async {
+  static Future<List<Details>> moreLike(String? id) async {
 
     final likeThis="https://api.themoviedb.org/3/movie/$id/similar?api_key=${Constant.apiKey}";
     var response = await http.get(Uri.parse(likeThis));
@@ -71,7 +71,7 @@ class Api {
       // return decodData.map((result) => Results.fromJson(result)).toList();
       return decodData.map((result) => Details.fromJson(result)).toList();
     } else {
-      throw Exception("somtheing went wrong");
+      throw Exception("something went wrong");
     }
     //var movieResponse = MovieResponse.fromJson(json)
     // return movieResponse;

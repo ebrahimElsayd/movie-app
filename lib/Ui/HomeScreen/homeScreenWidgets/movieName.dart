@@ -1,13 +1,8 @@
-
-
 import 'package:flutter/material.dart';
-
 import 'package:movies_app/model/detail/Details.dart';
 
-
-
 class MovieName extends StatelessWidget {
-  MovieName(
+  const MovieName(
       {super.key,
       // required this.rec,
       required this.results,
@@ -15,7 +10,7 @@ class MovieName extends StatelessWidget {
 
   final AsyncSnapshot snapshot;
   // Results results;
-  Details results;
+  final Details results;
   //Rec rec;
 
   @override
@@ -27,7 +22,7 @@ class MovieName extends StatelessWidget {
         Text("${results.title}",
             // "  ${rec.title}",
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 15,
               fontWeight: FontWeight.w400,
@@ -35,7 +30,7 @@ class MovieName extends StatelessWidget {
         Text("${results.releaseDate}",
             //Text("${rec.releaseDate}",
             textAlign: TextAlign.start,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 10,
               fontWeight: FontWeight.w400,

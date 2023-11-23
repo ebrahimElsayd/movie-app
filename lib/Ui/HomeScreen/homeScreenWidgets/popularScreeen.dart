@@ -6,7 +6,7 @@ import 'package:movies_app/model/constant.dart';
 
 
 class PopularScreen extends StatelessWidget {
-  PopularScreen({
+  const PopularScreen({
     super.key,
     required this.snapshot,
   });
@@ -22,6 +22,7 @@ class PopularScreen extends StatelessWidget {
       height: 290,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
+        itemCount: snapshot.data.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(8),
@@ -52,7 +53,7 @@ class PopularScreen extends StatelessWidget {
                     ),
                   ),
 
-                  Positioned(
+                  const Positioned(
                       bottom: 160,
                       right: 190,
                       child: Icon(
@@ -87,8 +88,6 @@ class PopularScreen extends StatelessWidget {
             ),
           );
         },
-        // itemCount: 100,
-        itemCount: snapshot.data.length,
       ),
     );
   }

@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/Ui/HomeScreen/homeScreenWidgets/details/detailss.dart';
 import 'package:movies_app/model/constant.dart';
 import 'package:movies_app/model/detail/Details.dart';
-import 'package:movies_app/network/firestore.dart';
+import 'package:provider/provider.dart';
+import '../../../../providers/save_provider.dart';
 
-class StackBoook extends StatefulWidget {
-   StackBoook(this.details,{super.key});
-Details details;
+class StackBook extends StatefulWidget {
+   const StackBook(this.details,{super.key});
+final Details details;
 
   @override
-  State<StackBoook> createState() => _StackBoookState();
+  State<StackBook> createState() => _StackBookState();
 }
 
-class _StackBoookState extends State<StackBoook> {
-   String isSave = "assets/images/bookmark.png";
-
+class _StackBookState extends State<StackBook> {
   @override
   Widget build(BuildContext context) {
+    SaveMovieProvider saveMovie = Provider.of<SaveMovieProvider>(context);
     return  Stack(
       children: [
         GestureDetector(
@@ -41,23 +41,13 @@ class _StackBoookState extends State<StackBoook> {
           child: FloatingActionButton(
               backgroundColor: Colors.transparent,
               onPressed: () async {
+                saveMovie.bookmarkButtonPressed(widget.details);
 
-
-                isSave = ("assets/images/bookmarkright.png");
-                // var model = Details(
-                //     title: "${widget.details.title}",
-                //     releaseDate:
-                //     "${widget.details.releaseDate}",
-                //     posterPath:
-                //     "${widget.details.posterPath}");
-                // await FireStoreUtils.addDataToFireStore(model);
-
-                setState(() {
-
-                });
               },
               child: Image.asset(
-                "${isSave}",
+                (widget.details.isFavorite)
+                    ? "assets/images/bookmarkright.png"
+                    : "assets/images/bookmark.png",
               )),
         )
       ],

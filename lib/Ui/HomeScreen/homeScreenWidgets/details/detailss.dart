@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-
 import 'package:movies_app/Ui/HomeScreen/homeScreenWidgets/recomendScreen.dart';
 import 'package:movies_app/api/api.dart';
 import 'package:movies_app/model/constant.dart';
 import 'package:movies_app/model/detail/Details.dart';
-import 'package:movies_app/network/firestore.dart';
-import 'package:movies_app/network/movie_model.dart';
+import 'package:provider/provider.dart';
+import '../../../../providers/save_provider.dart';
 
 class MovieDetails extends StatefulWidget {
-  MovieDetails(
-
-      // this.results
-      {super.key});
+  const MovieDetails({super.key});
   static const String routName = 'details';
 
   @override
@@ -19,8 +15,6 @@ class MovieDetails extends StatefulWidget {
 }
 
 class _MovieDetailsState extends State<MovieDetails> {
-  String isSave = "assets/images/bookmark.png";
-
   late Future<List<Details>> likeThis;
   @override
   void initState() {
@@ -30,18 +24,20 @@ class _MovieDetailsState extends State<MovieDetails> {
     //likeThis = Api.MoreLike();
   }
 
+  @override
   Widget build(BuildContext context) {
     var result = ModalRoute.of(context)?.settings.arguments as Details;
+    SaveMovieProvider saveMovie = Provider.of<SaveMovieProvider>(context);
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.white, size: 30),
+          iconTheme: const IconThemeData(color: Colors.white, size: 30),
           // backgroundColor: Color(0xEF282A28),
           backgroundColor: Colors.black12,
           //elevation: 10,
           title: Text(
             "${result.title}",
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
         ),
         body: SingleChildScrollView(
@@ -61,7 +57,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                         fit: BoxFit.fill,
                         filterQuality: FilterQuality.high,
                       ),
-                      Positioned(
+                      const Positioned(
                           bottom: 110,
                           right: 190,
                           child: Icon(
@@ -71,25 +67,25 @@ class _MovieDetailsState extends State<MovieDetails> {
                           )),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
                     "${result.title}",
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 18,
                         color: Colors.white),
                   ),
-                  Text("${result.releaseDate!.toString()}",
-                      style: TextStyle(
+                  Text(result.releaseDate!.toString(),
+                      style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 12,
                           color: Colors.white)),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Container(
+                  SizedBox(
                     height: 220,
                     //color:Colors.yellow ,
                     child: Row(
@@ -103,10 +99,8 @@ class _MovieDetailsState extends State<MovieDetails> {
                               // alignment: Alignment.topLeft,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
-
-                                // border: Border.all(color: )
                               ),
-                              margin: EdgeInsets.all(5),
+                              margin: const EdgeInsets.all(5),
                               width: 150,
                               height: 200,
                               child: Image.network(
@@ -124,18 +118,13 @@ class _MovieDetailsState extends State<MovieDetails> {
                               bottom: 158,
                               child: FloatingActionButton(
                                   backgroundColor: Colors.transparent,
-                                  onPressed: () async{
-                                    isSave = ("assets/images/bookmarkright.png");
-
-                                    //
-                                    // var model = Details(
-                                    //     title: "${result.title}", releaseDate: "${result.releaseDate}", posterPath: "${result.posterPath}");
-                                    // await FireStoreUtils.addDataToFireStore(model);
-
-                                    setState(() {});
+                                  onPressed: () async {
+                                    saveMovie.bookmarkButtonPressed(result);
                                   },
                                   child: Image.asset(
-                                    "${isSave}",
+                                    (result.isFavorite)
+                                        ? "assets/images/bookmarkright.png"
+                                        : "assets/images/bookmark.png",
                                   )),
                             )
                           ],
@@ -150,54 +139,60 @@ class _MovieDetailsState extends State<MovieDetails> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Container(
-                                    padding: EdgeInsets.symmetric(vertical: 5),
-                                    margin: EdgeInsets.symmetric(vertical: 5),
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 5),
+                                    margin:
+                                        const EdgeInsets.symmetric(vertical: 5),
                                     decoration: BoxDecoration(
                                         border: Border.all(
-                                            color: Color(0xFF514F4F)),
-                                        borderRadius: BorderRadius.all(
+                                            color: const Color(0xFF514F4F)),
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(5))),
                                     //alignment: Alignment.,
                                     height: 30,
                                     width: 60,
                                     //  color: Colors.transparent,
-                                    child: Text(
+                                    child: const Text(
                                       "Action",
                                       style: TextStyle(color: Colors.white),
                                       textAlign: TextAlign.center,
                                     ),
                                   ),
                                   Container(
-                                    padding: EdgeInsets.symmetric(vertical: 5),
-                                    margin: EdgeInsets.symmetric(vertical: 5),
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 5),
+                                    margin:
+                                        const EdgeInsets.symmetric(vertical: 5),
                                     decoration: BoxDecoration(
                                         border: Border.all(
-                                            color: Color(0xFF514F4F)),
-                                        borderRadius: BorderRadius.all(
+                                            color: const Color(0xFF514F4F)),
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(5))),
                                     //alignment: Alignment.,
                                     height: 30,
                                     width: 60,
                                     //  color: Colors.transparent,
-                                    child: Text(
+                                    child: const Text(
                                       "Action",
                                       style: TextStyle(color: Colors.white),
                                       textAlign: TextAlign.center,
                                     ),
                                   ),
                                   Container(
-                                    padding: EdgeInsets.symmetric(vertical: 5),
-                                    margin: EdgeInsets.symmetric(vertical: 5),
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 5),
+                                    margin:
+                                        const EdgeInsets.symmetric(vertical: 5),
                                     decoration: BoxDecoration(
                                         border: Border.all(
-                                            color: Color(0xFF514F4F)),
-                                        borderRadius: BorderRadius.all(
+                                            color: const Color(0xFF514F4F)),
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(5))),
                                     //alignment: Alignment.,
                                     height: 30,
                                     width: 60,
                                     //  color: Colors.transparent,
-                                    child: Text(
+                                    child: const Text(
                                       "Action",
                                       style: TextStyle(color: Colors.white),
                                       textAlign: TextAlign.center,
@@ -205,33 +200,35 @@ class _MovieDetailsState extends State<MovieDetails> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width,
+                              Expanded(
+                                flex: 2,
                                 child: SingleChildScrollView(
                                   child: Text(
                                     "${result.overview}",
-                                    style: TextStyle(
+                                    maxLines: 15,
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.w400,
-                                        fontSize: 13,
+                                        fontSize: 14,
                                         color: Colors.white),
                                   ),
                                 ),
                               ),
-                              Row(
-                               crossAxisAlignment: CrossAxisAlignment.end,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
-                                    size: 25,
-                                  ),
-                                  Text(
-                                    "${result.voteAverage!.toStringAsFixed(1)}/10",
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 18),
-                                  )
-                                ],
+                              Expanded(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    const Icon(
+                                      Icons.star,
+                                      color: Colors.amber,
+                                      size: 25,
+                                    ),
+                                    Text(
+                                      "${result.voteAverage!.toStringAsFixed(1)}/10",
+                                      style: const TextStyle(
+                                          color: Colors.white, fontSize: 18),
+                                    )
+                                  ],
+                                ),
                               ),
                             ],
                           ),
@@ -240,44 +237,45 @@ class _MovieDetailsState extends State<MovieDetails> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                    color: Color(0xEF282A28),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                    color: const Color(0xEF282A28),
                     child: SizedBox(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "More Like This",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 8,
                           ),
                           FutureBuilder(
-                            future: Api.MoreLike(result.id!),
+                            future: Api.moreLike(result.id!),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return Center(
+                                return const Center(
                                     child: CircularProgressIndicator());
                               } else if (snapshot.hasError) {
-                                print(snapshot.error.toString());
+                                // print(snapshot.error.toString());
                                 return Center(
                                   child: Column(
                                     children: [
                                       Text(snapshot.error.toString()),
                                       ElevatedButton(
                                           onPressed: () {},
-                                          child: Text("try again"))
+                                          child: const Text("try again"))
                                     ],
                                   ),
                                 );
                               }
                               //  int index = 0;
-                              return RecomendScreen(
+                              return RecommendScreen(
                                 snapshot: snapshot,
                               );
                             },

@@ -7,12 +7,12 @@ class Genres {
       this.name,});
 
   Genres.fromJson(dynamic json) {
-    id = json['id'];
+    id = json['id'].toString();
     name = json['name'];
   }
-  int? id;
+  String? id;
   String? name;
-Genres copyWith({  int? id,
+Genres copyWith({  String? id,
   String? name,
 }) => Genres(  id: id ?? this.id,
   name: name ?? this.name,

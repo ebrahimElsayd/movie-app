@@ -145,7 +145,7 @@ class Details {
   bool? video;
   double? voteAverage;
   int? voteCount;
-  bool? isFavorite  = false;
+  bool isFavorite = false;
 Details copyWith({  bool? adult,
   dynamic backdropPath,
   dynamic belongsToCollection,
@@ -171,7 +171,7 @@ Details copyWith({  bool? adult,
   bool? video,
   double? voteAverage,
   int? voteCount,
-  bool? isFavourite = false
+  bool isFavourite = false
 }) => Details(  adult: adult ?? this.adult,
   backdropPath: backdropPath ?? this.backdropPath,
   belongsToCollection: belongsToCollection ?? this.belongsToCollection,
@@ -243,6 +243,7 @@ Details copyWith({  bool? adult,
        releaseDate : json["releaseDate"],
         posterPath: json["posterPath"],
       isFavorite: json['isFavorite'],
+      voteAverage: json["voteAverage"],
     );
   }
 
@@ -253,6 +254,7 @@ Details copyWith({  bool? adult,
       "posterPath" : posterPath,
       "releaseDate" : releaseDate,
       'isFavorite': true,
+      "voteAverage" : voteAverage
     };
   }
 }

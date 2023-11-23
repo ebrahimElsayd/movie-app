@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/Ui/HomeScreen/Browse/Browse.dart';
 import 'package:movies_app/Ui/HomeScreen/Search/Search.dart';
 import 'package:movies_app/Ui/HomeScreen/homeScreenWidgets/homeScreen.dart';
-
 import 'WatchList/WatchList.dart';
 
 class Home extends StatefulWidget{
@@ -16,12 +15,12 @@ class Home extends StatefulWidget{
 
 class _HomeState extends State<Home> {
   int selectTapIndex=0;
-  List<Widget>taps=[
-    const HomeScreen(),
-    const Search(),
-    const Browse(),
-    const WatchList()
-  ];
+  // List<Widget>taps=[
+  //   const HomeScreen(),
+  //   const Search(),
+  //   const Browse(),
+  //   const WatchList()
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +65,17 @@ class _HomeState extends State<Home> {
 
        ],
      ),
-     body:taps[selectTapIndex] ,
+      body:
+      // taps[selectTapIndex] ,
+     Expanded(child: IndexedStack(
+       index: selectTapIndex,
+       children: const <Widget>[
+         HomeScreen(),
+         Search(),
+         Browse(),
+         WatchList()
+       ],
+     ))
 
 
    );

@@ -3,13 +3,11 @@ import 'package:movies_app/Ui/HomeScreen/homeScreenWidgets/recomendScreen.dart';
 import 'package:movies_app/api/api.dart';
 import 'package:movies_app/model/constant.dart';
 import 'package:movies_app/model/detail/Details.dart';
-import 'package:movies_app/network/firestore.dart';
+import 'package:provider/provider.dart';
+import '../../../../providers/save_provider.dart';
 
 class MovieDetails extends StatefulWidget {
-  const MovieDetails(
-
-      // this.results
-      {super.key});
+  const MovieDetails({super.key});
   static const String routName = 'details';
 
   @override
@@ -17,8 +15,6 @@ class MovieDetails extends StatefulWidget {
 }
 
 class _MovieDetailsState extends State<MovieDetails> {
-  String isSave = "assets/images/bookmark.png";
-
   late Future<List<Details>> likeThis;
   @override
   void initState() {
@@ -31,6 +27,7 @@ class _MovieDetailsState extends State<MovieDetails> {
   @override
   Widget build(BuildContext context) {
     var result = ModalRoute.of(context)?.settings.arguments as Details;
+    SaveMovieProvider saveMovie = Provider.of<SaveMovieProvider>(context);
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
@@ -102,8 +99,6 @@ class _MovieDetailsState extends State<MovieDetails> {
                               // alignment: Alignment.topLeft,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
-
-                                // border: Border.all(color: )
                               ),
                               margin: const EdgeInsets.all(5),
                               width: 150,
@@ -124,20 +119,12 @@ class _MovieDetailsState extends State<MovieDetails> {
                               child: FloatingActionButton(
                                   backgroundColor: Colors.transparent,
                                   onPressed: () async {
-                                    isSave =
-                                        ("assets/images/bookmarkright.png");
-
-                                    var model = Details(
-                                        title: "${result.title}",
-                                        releaseDate: "${result.releaseDate}",
-                                        posterPath: "${result.posterPath}");
-                                    await FireStoreUtils.addDataToFireStore(
-                                        model);
-
-                                    setState(() {});
+                                    saveMovie.bookmarkButtonPressed(result);
                                   },
                                   child: Image.asset(
-                                    isSave,
+                                    (result.isFavorite)
+                                        ? "assets/images/bookmarkright.png"
+                                        : "assets/images/bookmark.png",
                                   )),
                             )
                           ],
@@ -275,7 +262,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                                 return const Center(
                                     child: CircularProgressIndicator());
                               } else if (snapshot.hasError) {
-                                print(snapshot.error.toString());
+                                // print(snapshot.error.toString());
                                 return Center(
                                   child: Column(
                                     children: [
@@ -288,7 +275,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                                 );
                               }
                               //  int index = 0;
-                              return RecomendScreen(
+                              return RecommendScreen(
                                 snapshot: snapshot,
                               );
                             },

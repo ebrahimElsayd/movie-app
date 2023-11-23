@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:movies_app/Ui/HomeScreen/homeScreenWidgets/newReleases.dart';
 import 'package:movies_app/Ui/HomeScreen/homeScreenWidgets/popularScreeen.dart';
 import 'package:movies_app/Ui/HomeScreen/homeScreenWidgets/recomendScreen.dart';
@@ -15,25 +14,26 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMixin<HomeScreen>{
   // late Future<List<Results>> popularScreen  ;
   late Future<List<Details>> releasesScreen;
   // late Future<List<Recomend>> recomendedScreen;
-  late Future<List<Details>> recomendedScreen;
+  late Future<List<Details>> recommendedScreen;
   // late Future<List<Results>> popularScreen;
   late Future<List<Details>> popularScreen;
   //late Future<List<Rec>> releasesScreen;
 
+
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
     popularScreen = Api.getPopularResponse();
     releasesScreen = Api.newReleasesResponse();
-    recomendedScreen = Api.recommendedResponse();
+    recommendedScreen = Api.recommendedResponse();
+    super.initState();
   }
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
         backgroundColor: Colors.black,
         //  backgroundColor: Colors.transparent,
@@ -47,7 +47,6 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
-                  //   height: ,
                   child: FutureBuilder(
                     future: popularScreen,
                     builder: (context, snapshot) {
@@ -137,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 8,
                         ),
                         FutureBuilder(
-                          future: recomendedScreen,
+                          future: recommendedScreen,
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
@@ -156,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               );
                             }
                             //  int index = 0;
-                            return RecomendScreen(
+                            return RecommendScreen(
                               snapshot: snapshot,
                             );
                           },
@@ -170,4 +169,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ));
   }
+  @override
+  bool get wantKeepAlive => true;
 }

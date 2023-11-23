@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/Ui/HomeScreen/homeScreenWidgets/details/detailss.dart';
 import 'package:movies_app/model/constant.dart';
 import 'package:movies_app/model/detail/Details.dart';
-import 'package:movies_app/network/firestore.dart';
+import 'package:provider/provider.dart';
+import '../../../../providers/save_provider.dart';
 
 class StackBook extends StatefulWidget {
    const StackBook(this.details,{super.key});
@@ -13,9 +14,9 @@ final Details details;
 }
 
 class _StackBookState extends State<StackBook> {
-   String isSave = ("assets/images/bookmark.png");
   @override
   Widget build(BuildContext context) {
+    SaveMovieProvider saveMovie = Provider.of<SaveMovieProvider>(context);
     return  Stack(
       children: [
         GestureDetector(
@@ -40,28 +41,13 @@ class _StackBookState extends State<StackBook> {
           child: FloatingActionButton(
               backgroundColor: Colors.transparent,
               onPressed: () async {
-
-                if(isSave == ("assets/images/bookmarkright.png")){
-                  return;
-                }
-                else
-                  {
-                    isSave = ("assets/images/bookmarkright.png");
-                    var model = Details(
-                        title: "${widget.details.title}",
-                        releaseDate:
-                        "${widget.details.releaseDate}",
-                        posterPath:
-                        "${widget.details.posterPath}");
-                    await FireStoreUtils.addDataToFireStore(model);
-                  }
-                setState(() {
-
-                });
+                saveMovie.bookmarkButtonPressed(widget.details);
 
               },
               child: Image.asset(
-                isSave,
+                (widget.details.isFavorite)
+                    ? "assets/images/bookmarkright.png"
+                    : "assets/images/bookmark.png",
               )),
         )
       ],

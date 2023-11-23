@@ -4,6 +4,8 @@ import 'package:movies_app/Ui/HomeScreen/Search/Search.dart';
 import 'package:movies_app/Ui/HomeScreen/homeScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:movies_app/Ui/HomeScreen/homeScreenWidgets/details/detailss.dart';
+import 'package:movies_app/providers/save_provider.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -11,7 +13,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create:(context) => SaveMovieProvider(),
+  child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

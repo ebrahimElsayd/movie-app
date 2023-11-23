@@ -22,6 +22,7 @@ class PopularScreen extends StatelessWidget {
       height: 290,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
+        itemCount: snapshot.data.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(8),
@@ -87,8 +88,6 @@ class PopularScreen extends StatelessWidget {
             ),
           );
         },
-        // itemCount: 100,
-        itemCount: snapshot.data.length,
       ),
     );
   }

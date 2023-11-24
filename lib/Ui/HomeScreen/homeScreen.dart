@@ -67,7 +67,7 @@ class _HomeState extends State<Home> {
      ),
       body:
       // taps[selectTapIndex] ,
-     Expanded(child: IndexedStack(
+     IndexedStack(
        index: selectTapIndex,
        children: const <Widget>[
          HomeScreen(),
@@ -75,7 +75,7 @@ class _HomeState extends State<Home> {
          Browse(),
          WatchList()
        ],
-     ))
+     )
 
 
    );

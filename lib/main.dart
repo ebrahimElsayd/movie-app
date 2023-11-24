@@ -1,11 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/Ui/HomeScreen/Browse/movieList.dart';
 import 'package:movies_app/Ui/HomeScreen/Search/Search.dart';
 import 'package:movies_app/Ui/HomeScreen/homeScreen.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:movies_app/Ui/HomeScreen/homeScreenWidgets/details/detailss.dart';
 import 'package:movies_app/providers/save_provider.dart';
 import 'package:provider/provider.dart';
+
 import 'firebase_options.dart';
 
 void main() async {
@@ -15,7 +16,7 @@ void main() async {
   );
   runApp(ChangeNotifierProvider(
       create:(context) => SaveMovieProvider(),
-  child: const MyApp()));
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -35,20 +36,19 @@ class MyApp extends StatelessWidget {
       initialRoute: Home.routeName,
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1A1A1A),
-          onPrimary: Colors.white,
-          onSecondary: Colors.black
-        ),
-        primaryColor: const Color(0xFF1A1A1A),
+          colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1A1A1A),
+              onPrimary: Colors.white,
+              onSecondary: Colors.black
+          ),
+          primaryColor: const Color(0xFF1A1A1A),
           secondaryHeaderColor: Colors.black,
           scaffoldBackgroundColor:Colors.transparent ,
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          selectedItemColor: Color(0xFFFBAF22),
-          unselectedItemColor: Colors.white,
-          selectedIconTheme: IconThemeData(
-              size: 32
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            selectedItemColor: Color(0xFFFBAF22),
+            unselectedItemColor: Colors.white,
+            selectedIconTheme: IconThemeData(
+                size: 32),
           ),
-        ),
           useMaterial3: true
       ),
       debugShowCheckedModeBanner: false,
